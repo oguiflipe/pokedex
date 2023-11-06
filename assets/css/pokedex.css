@@ -92,7 +92,8 @@
 .pokemon .name{
     text-transform: capitalize;
     color: #FFF; 
-    margin-bottom: .625rem;  
+    margin-bottom: .625rem;
+    text-align: left;  
 }
 .pokemon .number{
     color: #000;
@@ -165,6 +166,93 @@
     font-size: .824rem;
     margin: .625rem 0;
 }
+
+/*Estilizando botão do card*/
+.button-details{
+    background-color: #FFF;
+    border: none;
+}
+
+/*estilizando os detalhes do pokemon*/
+.pokemons-details{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo-detalhe{
+    text-align: center;
+}
+
+.pokemon-details{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    width: 500px;
+    height: auto;
+}
+.pokemon-details .name-details{
+    text-transform: capitalize;
+    color: #FFF; 
+    margin-bottom: .625rem;
+    text-align: left;  
+    font-size: 3rem;
+}
+.pokemon-details .number-details{
+    color: #000;
+    opacity: .2;
+    text-align: right;
+    font-size: 2rem;
+}
+.pokemon-details .poke-details{
+    display: flex;
+    flex-direction: row;
+}
+.pokemon-details .poke-details .types-details{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.pokemon-details .poke-details .types-details .type{
+    color: #FFF;
+    padding: .25rem .5rem;
+    font-size: 2rem;
+    margin: .625rem 0;
+    border-radius: 1rem;
+    filter: brightness(1.1);
+    text-align: center;
+}
+.pokemon-details .poke-details img{
+    max-width: 100%;
+    height: 250px;
+    align-self: flex-end;
+    margin-left: 230px;
+}
+
+.pokemon-details .div-name-detail .name-detail{
+    padding: .25rem .5rem;
+    margin: .625rem 0;
+    border-radius: 1rem;
+    filter: brightness(1.1);
+    background-color: rgb(0,0,0, 0.2);
+}
+
+.pokemon-details .div-name-detail .name-detail{
+    color: #FFF;
+    padding: .25rem .5rem;
+    font-size: 2rem;
+    margin: .625rem 0;
+    border-radius: 1rem;
+    filter: brightness(1.1);
+    text-align: center;
+}
+
 
 
 

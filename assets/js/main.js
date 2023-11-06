@@ -17,23 +17,25 @@ function loadPokemonItens(offSet, limit) {
     const newHtml = pokemons
       .map(
         pokemon => `
-        <li class="pokemon ${pokemon.type}" >
-            <span class="number">#${pokemon.number}</span>
-            <span class="name">${pokemon.name}</span>
+        <button class="button-details" onclick="window.location.href = './assets/components/details/index.html'">
+          <li class="pokemon ${pokemon.type}" >
+              <span class="number">#${pokemon.number}</span>
+              <span class="name">${pokemon.name}</span>
 
-            <div class="detail">
-                <ol class="types">
-                    ${pokemon.types
-                      .map(type => `<li class="type ${type}">${type}</li>`)
-                      .join("")}
-                </ol>
+              <div class="detail">
+                  <ol class="types">
+                      ${pokemon.types
+                        .map(type => `<li class="type ${type}">${type}</li>`)
+                        .join("")}
+                  </ol>
 
-                <img src="${pokemon.photo}" 
-                alt=${pokemon.name}>
-        
-            </div>
-            
-        </li>
+                  <img src="${pokemon.photo}" 
+                  alt=${pokemon.name}>
+          
+              </div>
+              
+          </li>
+        </button>
         `
       )
       .join("")
@@ -62,12 +64,12 @@ loadMoreButton.addEventListener("click", () => {
 })
 
 //Criando pagina de detalhes.
+/*
 const openCard = document.querySelector("#openCard")
 openCard.addEventListener("click", function openCardDetails() {
   window.location.href = "./assets/components/details/index.html"
-  console.log("clicou aqui")
 })
-
+*/
 //criando regras para abrir os detalhes do pokemon
 
 //openCard.addEventListener("click", () => {
