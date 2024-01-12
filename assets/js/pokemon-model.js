@@ -1,23 +1,17 @@
-
-/*
-class Pokemon{
-    number;
+class Pokemon {
+    id;
     name;
-    type;
-    types = [];
     photo;
-}
- */
-class Pokemon{
-    abilities;
+
+    type;
+    types = [];  
+
     ability;
-    name;
-    move;
-    stats;
-    stat;
-    number;
-    type;
-    types = [];
-    photo;
+    abilities = [];
+   
+    baseStat;
+    stats = [];
+   
+    nameStats;
+    stat = []; 
 }
-

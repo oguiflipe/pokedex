@@ -1,81 +1,90 @@
-//pegando a lista de pokemons do HTML pelo ID
-const pokemonList = document.getElementById("pokemonList")
+const loadMoreButton = document.getElementById('loadMoreButton');
+const pokemonList = document.getElementById('pokemonList');
+const maxLimit = 151;
+const limit = 12;
+let offset = 0;
 
-//puxando o botão para controlar a paginação.
-const loadMoreButton = document.getElementById("loadMoreButton")
-const limit = 10
-let offSet = 0
 
-//colocando limite no loading da pagina
-const maxRecords = 900
 
-//Convertendo o arquivo json em html
-//criando função para chamar somente os dados necessários.
-//trabalhando com o .map / convertendo em LI
-function loadPokemonItens(offSet, limit) {
-  pokeApi.getPokemons(offSet, limit).then((pokemons = []) => {
-    const newHtml = pokemons
-      .map(
-        pokemon => `
-        <button class="button-details" onclick="window.location.href = './assets/components/details/index.html'">
-          <li class="pokemon ${pokemon.type}" >
-              <span class="number">#${pokemon.number}</span>
-              <span class="name">${pokemon.name}</span>
+function createPokemonButton(pokemon) {
+    const buttonStats = document.createElement('button');
+    buttonStats.classList.add('pokemonStats');
+    buttonStats.setAttribute('type', 'button');
+    buttonStats.innerHTML = `
+        <li class="pokemon ${pokemon.type}">
+            <span class="number">#${pokemon.id}</span>
+            <span class="name">${pokemon.name}</span>
+            <div class="detail">
+                <ol class="types">
+                    ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
+                </ol>
+                <img src="${pokemon.photo}" alt="${pokemon.name}">
+            </div>
+        </li>
+    `;
 
-              <div class="detail">
-                  <ol class="types">
-                      ${pokemon.types
-                        .map(type => `<li class="type ${type}">${type}</li>`)
-                        .join("")}
-                  </ol>
+    
+    buttonStats.addEventListener('click', () => {      
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+            <li class="pokemon ${pokemon.type}">
+            <span class="number">#${pokemon.id}</span>
+            <span class="name">${pokemon.name}</span>
+            <img src="${pokemon.photo}" alt="${pokemon.name}">
+            <div class="detail">
+                <ol class="abilities">
+                <span class="tittle-abilities">Habilidades:</span>
+                ${pokemon.abilities.map((ability) => `<li class="abilities${ability}">${ability}</li>`).join('')}
+                </ol>
+                <ol class="statsName">
+                <span class="tittle-stats">Status:</span>
+                ${pokemon.stat.map((nameStats) => `<li class="statsName${nameStats}">${nameStats}</li>`).join('')}
+                </ol>
+                <ol class="stats">
+                <div style="width: 10px; height: 10px;"></div>
+                ${pokemon.stats.map((baseStat) => `<li class="numberBar">${baseStat}</li>`).join('')}                
+                </ol>
+                </div>
+                </li>                
+          `;
+            modal.style.display = 'block';
+    });
 
-                  <img src="${pokemon.photo}" 
-                  alt=${pokemon.name}>
-          
-              </div>
-              
-          </li>
-        </button>
-        `
-      )
-      .join("")
-
-    pokemonList.innerHTML += newHtml
-  })
+    return buttonStats;
 }
 
-//chamando para carregar a pagina
-loadPokemonItens(offSet, limit)
+function loadPokemonItems(offset, limit) {
+    pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
+        const fragment = document.createDocumentFragment();
 
-//criando regras de paginação e remoção do botão
-loadMoreButton.addEventListener("click", () => {
-  offSet += limit
+        pokemons.forEach((pokemon) => {
+            const buttonStats = createPokemonButton(pokemon);
+            fragment.appendChild(buttonStats);
+        });
 
-  const qtdRecordsPage = offSet + limit
+        pokemonList.appendChild(fragment);
+    });
+}
 
-  if (qtdRecordsPage >= maxRecords) {
-    const limit = maxRecords - offSet
-    loadPokemonItens(offSet, limit)
+loadPokemonItems(offset, limit);
 
-    loadMoreButton.parentElement.removeChild(loadMoreButton)
-  } else {
-    loadPokemonItens(offSet, limit)
-  }
-})
+loadMoreButton.addEventListener('click', () => {
+    offset += limit;
 
-//Criando pagina de detalhes.
-/*
-const openCard = document.querySelector("#openCard")
-openCard.addEventListener("click", function openCardDetails() {
-  window.location.href = "./assets/components/details/index.html"
-})
-*/
-//criando regras para abrir os detalhes do pokemon
+    const qtdLimit = offset + limit;
 
-//openCard.addEventListener("click", () => {
-//  console.log("clicou aqui")
-//})
+    if (qtdLimit >= maxLimit) {
+        const newLimit = maxLimit - offset;
+        loadPokemonItems(offset, newLimit);
+        loadMoreButton.parentElement.removeChild(loadMoreButton);
+    } else {
+        loadPokemonItems(offset, limit);
+    }
+});
 
-//window.onload = () => {
-// window.location.href = "./assets/components/details/index.html"
-//}
+const closeModalButton = document.querySelector('.closeModal');
+closeModalButton.addEventListener('click', () => {
+  const modal = document.getElementById('modal');
+  modal.style.display = 'none';
+});

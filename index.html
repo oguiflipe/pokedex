@@ -28,27 +28,42 @@
     <!--Chamando o estilo do css-->
     <link rel="stylesheet" href="assets/css/global.css" />
     <!--Chamando o estilo do css-->
-    <link rel="stylesheet" href="assets/css/pokedex.css" />
+    <link rel="stylesheet" href="assets//css/pokedex.css" />
   </head>
   <body>
-    <!-- Criando uma section para agrupar os pokemons  -->
+    <!-- section para agrupar os pokemons  -->
     <section class="content">
-      <!-- criando titulo  -->
+      <!-- titulo  -->
       <h1>Pokedex</h1>
 
-      <!-- Lista ordenada  -->
-      <ol id="pokemonList" class="pokemons"></ol>
+      <main>
+        <ol id="pokemonList" class="pokemons">
+          <!-- Lista dinamica de pokemons -->
+       </ol>
+      </main>
+
    
 
-      <!-- Criando botão de paginação-->
+      <!-- botão de paginação-->
       <div class="pagination">
-        <button type="button" id="loadMoreButton">LoadMore</button>
+        <button type="button" id="loadMoreButton">Carregar mais</button>
       </div>
+
+      <!-- Modal para detalhes dos pokemons-->
+      <div id="modal" class="modal">
+        <div class="modalContent" >              
+          <span class="closeModal">&times;</span>
+         
+          <div id="modalContent"></div>
+        
+        </div>
+      </div>
+
     </section>
 
     <!-- Nosso Js  -->
-    <script src="assets/js/pokemon-model.js"></script>
-    <script src="assets/js/poke-ipi.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="./assets/js/pokemon-model.js"></script>
+    <script src="./assets/js/poke-api.js"></script>
+    <script src="./assets/js/main.js"></script>
   </body>
 </html>

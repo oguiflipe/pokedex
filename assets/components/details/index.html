@@ -32,19 +32,37 @@
   </head>
   <body>
     <!-- Criando uma section para agrupar os pokemons  -->
-    <section class="content">
+    <main class="root">
       <!-- criando titulo  -->
       <h1 class="titulo-detalhe">Datalhe do Pokemon</h1>
+      
+      <main>
+        <!-- Lista ordenada  -->
+        <ol id="pokemonList" class="pokemons" id="pokemons"> 
+          <li>
+            
+            <h1>``</h1>
+          </li> 
+        </ol>
+      </main>
 
-      <!-- Lista ordenada  -->
-      <div class="content-details">
-        <ol id="pokemonList" class="pokemons-details"></ol>
+    
+
+      <!-- Div para o botão back  -->
+      <div class="div-button-back">
+        <button class="back-button" onclick="window.location.href = '../../../index.html'">Voltar</button>
       </div>
-    </section>
+      
+    </main>
+    
 
     <!-- Nosso Js  -->
     <script src="../../js/pokemon-model.js"></script>
+    <script src="../../js/pokemon/api.js"></script>
     <script src="../../js/poke-ipi.js"></script>
-    <script src="../../js/details.js"></script>
+
+    <script>
+
+    </script>
   </body>
 </html>
