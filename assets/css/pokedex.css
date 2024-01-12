@@ -180,7 +180,7 @@
 }
 
 .modalContent {
-    width: 00px;
+    max-width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -194,8 +194,8 @@
   
 .modalContent img{    
     align-self: center;
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 25px;
+    max-height: 25px;
     padding: .5rem;
 }
 .modalContent .number {
@@ -214,10 +214,10 @@
 .closeModal {
     position: absolute;
     align-self: center;
-    top: -50px;
+    top: -130px;
     left: 50%;
-    font-size: 30px;
-    width: 30px;   
+    font-size: 50px;
+    width: 50px;   
     cursor: pointer;
     color: red;    
     border-radius: 5px;
